@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Bookstore Using Hana DB",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "cds",
+      "args": [
+        "watch",
+        "--profile",
+        "hybrid"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Run Locally",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "cds",
+      "args": [
+        "watch",
+        "--profile",
+        "hybrid"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

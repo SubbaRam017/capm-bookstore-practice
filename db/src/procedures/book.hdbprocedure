@@ -1,0 +1,21 @@
+PROCEDURE "book"(
+    IN IP_BOOKID NVARCHAR(50),
+    OUT OUT_BOOKS TABLE (
+        ID INTEGER,
+        TITLE NVARCHAR(5000),
+        AUTHOR_ID NVARCHAR(5000),
+        PRICE INTEGER
+))
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+   using SQLSCRIPT_SYNC as SyncLib;
+
+   OUT_BOOKS = SELECT ID, TITLE, AUTHOR_ID, PRICE from SAP_CAPIRE_BOOKSHOP_BOOKS where ID = :IP_BOOKID;
+   
+END

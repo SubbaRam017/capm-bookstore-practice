@@ -1,0 +1,62 @@
+### 
+GET http://localhost:4004/odata/v4/catalog/Books
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=title eq 'TEST TEST'
+
+###
+POST http://localhost:4004/odata/v2/catalog/submitOrder
+Content-Type: application/json
+
+{ "book":201, "quantity":5 }
+
+### Sending Function Hello odata/v4/catalog/hello(to='Srinivas') Will Work for only V4 
+GET http://localhost:4004/odata/v4/catalog/hello(to='Srinivas')
+
+### Sending Function Hello odata/v2/catalog/hello(to='Srinivas') Will Not Work for V2
+GET http://localhost:4004/odata/v2/catalog/hello(to='Srinivas')
+
+
+### Requesting Sleep function
+GET http://localhost:4004/odata/v4/catalog/sleep()
+
+
+###
+GET http://localhost:4004/odata/v4/catalog/getBooksData(passingId=207)
+
+
+###READ of custom Entity
+GET http://localhost:4004/odata/v2/catalog/ReadEmployeeSrv
+
+###Create Employee with custom handler
+POST http://localhost:4004/odata/v2/catalog/InsertEmployeeSrv
+Content-Type: application/json;IEEE754Compatible=true
+
+{           
+    "ID": "02BD2137-0890-1EEA-A6C2-BB55C1978969",
+    "nameFirst": "SR",
+    "nameMiddle": "",
+    "nameLast": "Ram",
+    "nameInitials": "",
+    "sex": "M",
+    "language": "E",
+    "phoneNumber": "+1 (248) 258-2588",
+    "email": "practice.book@gmail.com",
+    "loginName": "SR",
+    "accountNumber": "111222333",
+    "bankName": "BCBS"
+}
+
+###Update using Custom Handler
+PUT  http://localhost:4004/odata/v2/catalog/UpdateEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C1978969
+Content-Type: application/json;IEEE754Compatible=true
+
+{           
+    "ID": "02BD2137-0890-1EEA-A6C2-BB55C1978969",
+    "nameFirst": "SR",
+    "nameLast": "Ram"
+}
+
+###DELETE The data using Custom Handler
+DELETE http://localhost:4004/odata/v2/catalog/DeleteEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C1978969
+

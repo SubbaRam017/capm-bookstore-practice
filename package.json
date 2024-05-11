@@ -1,0 +1,49 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.12.8",
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/hdbext": "^8.0.3",
+    "@sap/xssec": "^3",
+    "cf-nodejs-logging-support": "^7.3.0",
+    "express": "^4",
+    "sap-hdbext-promisfied": "^2.202404.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/hdi-deploy": "^5.1.1",
+    "@sap/ux-specification": "^1.120.9",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "start-deploy": "cds build && cds deploy --to hana",
+    "loadmyapp": "cds watch --profile hybird",
+    "watch-books-ui": "cds watch --open books-ui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy bookstore --delete-services --delete-service-keys --delete-service-brokers",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana",
+        "pool": {
+          "min": 0,
+          "max": 100
+        }
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  }
+}
